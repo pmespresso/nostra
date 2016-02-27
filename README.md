@@ -1,0 +1,2 @@
+# nostra
+Visual recognition stuff?
