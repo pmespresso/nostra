@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Simple File Uploader
 
 [![Code Climate](https://codeclimate.com/github/merty/simple-file-uploader/badges/gpa.svg)](https://codeclimate.com/github/merty/simple-file-uploader)
@@ -32,3 +33,7 @@ Seeing that many people are actually interested in both HTML5 File API and Node.
 ## License
 
 This application is released under the MIT License. See the `LICENSE` file for details.
+=======
+# nostra
+Visual recognition stuff?
+>>>>>>> 9b48eebb82b627546b091493f1ca5affafe4f0b3
