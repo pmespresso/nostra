@@ -1,12 +1,14 @@
 var config = require('./config');
 var fs = require('fs');
 
+
 function home(response, postData) {
   response.writeHead(200, {'Content-Type': 'text/html'});
   response.end(fs.readFileSync('./static/index.html'));
 }
 
-var awsStorageUrl = [];
+
+var aws_urls = [];
 
 function upload(response, postData) {
 
@@ -38,7 +40,7 @@ function upload(response, postData) {
 
       if ( typeof res !== "undefined" && 200 === res.statusCode ) {
         console.log('Uploaded to: %s', res.client._httpMessage.url);
-        awsStorageUrl.push(res.client._httpMessage.url);
+        aws_urls.push(res.client._httpMessage.url);
         response.statusCode = 200;
       } else {
         console.log('Upload failed!');

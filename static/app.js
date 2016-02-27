@@ -1,3 +1,4 @@
+
 (function (window, document) {
 
   'use strict';
@@ -108,34 +109,27 @@
   var addFile = document.getElementById('addFile');
   addFile.addEventListener('change', handleFileDialog);
 
-  var timeToCaption = function () {
-    var evt = new MouseEvent('click');
-    document.getElementById('captionPictures').dispatchEvent(evt);
-
-  }
-
-  //wqPjZRWeiRhmdQcsqWxi66L2MOMW8t
+//wqPjZRWeiRhmdQcsqWxi66L2MOMW8t
 //https://api.clarifai.com/v1/tag/?url=http://www.clarifai.com/img/metro-north.jpg
-  var clarifaiPictures = function () {
-    //TODO actually pass in the AWS S3 url and have it query each picture 
-    var client = new XMLHttpRequest();
-    var url = "";
-    client.onreadystatechange = function () {
-      if (client.readyState == 4 && client.status == 200) {
-            var response = JSON.parse(client.responseText);
-            if (response) {
-              console.log(response.results[0].result.tag.classes[0]);
-            }
-            else {
-              console.error("data is undefined");
-            }
+var clarifaiPictures = function () {
+  //TODO actually pass in the AWS S3 url and have it query each picture 
+  var client = new XMLHttpRequest();
+  client.onreadystatechange = function () {
+    if (client.readyState == 4 && client.status == 200) {
+          var response = JSON.parse(client.responseText);
+          if (response) {
+            console.log(response.results[0].result.tag.classes[0]);
+            console.log(global.aws_urls)
           }
-      };
-        client.open("GET", "https://api.clarifai.com/v1/tag/?url=" + url );
-        client.setRequestHeader("Authorization", "Bearer wqPjZRWeiRhmdQcsqWxi66L2MOMW8t");
-        client.send();
-    }
-
-document.getElementById("captionPictures").addEventListener("click", clarifaiPictures())
+          else {
+            console.error("data is undefined");
+          }
+        }
+    };
+    client.open("GET", "https://api.clarifai.com/v1/tag/?url=" );
+    client.setRequestHeader("Authorization", "Bearer wqPjZRWeiRhmdQcsqWxi66L2MOMW8t");
+    client.send();
+}
+  
 
 }(window, window.document));

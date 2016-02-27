@@ -6,7 +6,7 @@ var routes = {
   '/': handlers.home,
   '/home': handlers.home,
   '/upload': handlers.upload,
-  '_static': handlers.serveStatic
+  '_static': handlers.serveStatic,
 };
 
 server.start(router.route, routes);
