@@ -1,7 +1,6 @@
 (function (window, document) {
 
   'use strict';
-
   var all_files = [];
   var current_file_id = 0;
   var locked = false;
@@ -114,10 +113,13 @@
     document.getElementById('captionPictures').dispatchEvent(evt);
 
   }
-//wqPjZRWeiRhmdQcsqWxi66L2MOMW8t
+
+  //wqPjZRWeiRhmdQcsqWxi66L2MOMW8t
 //https://api.clarifai.com/v1/tag/?url=http://www.clarifai.com/img/metro-north.jpg
   var clarifaiPictures = function () {
+    //TODO actually pass in the AWS S3 url and have it query each picture 
     var client = new XMLHttpRequest();
+    var url = "";
     client.onreadystatechange = function () {
       if (client.readyState == 4 && client.status == 200) {
             var response = JSON.parse(client.responseText);
@@ -129,10 +131,11 @@
             }
           }
       };
-        client.open("GET", "https://api.clarifai.com/v1/tag/?url=http://www.clarifai.com/img/metro-north.jpg");
+        client.open("GET", "https://api.clarifai.com/v1/tag/?url=" + url );
         client.setRequestHeader("Authorization", "Bearer wqPjZRWeiRhmdQcsqWxi66L2MOMW8t");
         client.send();
     }
+
 document.getElementById("captionPictures").addEventListener("click", clarifaiPictures())
 
 }(window, window.document));

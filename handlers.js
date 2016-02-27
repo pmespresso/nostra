@@ -6,6 +6,8 @@ function home(response, postData) {
   response.end(fs.readFileSync('./static/index.html'));
 }
 
+var awsStorageUrl = [];
+
 function upload(response, postData) {
 
   var file = JSON.parse(postData);
@@ -36,6 +38,7 @@ function upload(response, postData) {
 
       if ( typeof res !== "undefined" && 200 === res.statusCode ) {
         console.log('Uploaded to: %s', res.client._httpMessage.url);
+        awsStorageUrl.push(res.client._httpMessage.url);
         response.statusCode = 200;
       } else {
         console.log('Upload failed!');
